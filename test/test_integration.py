@@ -1,9 +1,11 @@
-import sqlite3 
+import sqlite3
 from app import calcular_prioridad
+
+
 def testdb_connection_and_ticked_creation():
     """Prueba de conexión a la base de datos."""
-
-    conn = sqlite3.connect(':memory:')  # Conexión a una base de datos en memoria para pruebas
+    # Conexión a una base de datos en memoria para pruebas
+    conn = sqlite3.connect(':memory:')
     cursor = conn.cursor()
     cursor.execute(
         "CREATE TABLE tickets (id INTEGER, ubicacion TEXT, prioridad TEXT)"
@@ -11,7 +13,7 @@ def testdb_connection_and_ticked_creation():
     
     # logica de negocio ypersistencia
     ubicacion = "Laboratorio de redes"
-    prioridad= calcular_prioridad(10)  # Dedebería retornar "Alta" para 10 días abiertos
+    prioridad= calcular_prioridad(10)
     cursor.execute(
         "INSERT INTO tickets (id, ubicacion, prioridad) VALUES (?, ?, ?)", 
         (1, ubicacion, prioridad)
