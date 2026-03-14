@@ -5,7 +5,8 @@ on:
     branches: [develop]
 jobs:
   quality-check:
-    runs-on: ubuntu-latest  las distribuciones de linux mes mas facil definir una imagen
+    runs-on: ubuntu-latest
+    # las distribuciones de linux hacen más fácil definir una imagen
     steps: # steps identificados para cada tarea que se va a realizar
       - name: Checkout Code #  aca el nombre queramos
         uses: actions/checkout@v4 #   este es el primer paso para clonar el repositorio
