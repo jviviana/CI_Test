@@ -11,7 +11,7 @@ def test_prioridad_alta():
     assert calcular_prioridad(6) == "Alta"
 
 
-def test_prioridad_normal(): 
+def test_prioridad_normal():
     # Prueba con días abiertos iguales a 5
     assert calcular_prioridad(5) == "Normal"
 
