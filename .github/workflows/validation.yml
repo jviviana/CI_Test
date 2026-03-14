@@ -1,25 +1,27 @@
 name: CI-Test Validation
 on:
-push:  //cuando haga un push en la rama develop se ejecuta el pipeline de validación
-branches: [ develop ]
-pull_request:
-branches: [ develop ]
+  push: #cuando haga un push en la rama develop se ejecuta el pipeline de validación
+  pull_request: #cuando haga un pull request a la rama develop se ejecuta el pipeline de validación
+    branches: [develop]
 jobs:
-quality-check:
-runs-on: ubuntu-latest// las distribuciones de linux mes mas facil definir una imagen
-steps:// steps identificados para cada tarea que se va a realizar
-- name: Checkout Code// aca el nombre queramos
-uses: actions/checkout@v4  //  este es el primer paso para clonar el repositorio
-- name: Setup Python
-uses: actions/setup-python@v5 // este es el segundo paso para instalar python y ya esta definida
-with:
-python-version: '3.11' // este es el tercer paso para definir la version de python que vamos a usar
-- name: Install Dependencies // va a instalar las dependencias que se definen en el archivo requirements.txt
-run: |// y va a correr todo este codigo
-python -m pip install --upgrade pip
-pip install flake8// puede llegar a sobrar pero mejor q vaya aca
-if [ -f requirements.txt ]; then pip install -r
-requirements.txt; fi
-- name: Run Linting (Flake8)
-run: flake8 . --exclude=venv
-// si fueranmos hacer despliegue aca hiria el resto de los pasos
+  quality-check:
+    runs-on: ubuntu-latest  las distribuciones de linux mes mas facil definir una imagen
+    steps: # steps identificados para cada tarea que se va a realizar
+      - name: Checkout Code // aca el nombre queramos
+        uses: actions/checkout@v4  //  este es el primer paso para clonar el repositorio
+
+      - name: Setup Python
+        uses: actions/setup-python@v5 // este es el segundo paso para instalar python y ya esta definida
+        with:
+          python-version: "3.11" # este es el tercer paso para definir la version de python que vamos a usar
+
+      - name: Install Dependencies // va a instalar las dependencias que se definen en el archivo requirements.txt
+        run: | # y va a correr todo este codigo
+          python -m pip install --upgrade pip
+          pip install flake8// puede llegar a sobrar pero mejor q vaya aca
+          if [ -f requirements.txt ]; then pip install -r
+          requirements.txt; fi
+
+      - name: Run Linting (Flake8)
+        run: flake8 . --exclude=venv
+#si fueranmos hacer despliegue aca hiria el resto de los pasos
