@@ -24,4 +24,9 @@ jobs:
 
       - name: Run Linting (Flake8)
         run: flake8 . --exclude=venv
+
+      - name: Ejecutar Pruebas con Pytest
+        run: |
+          pytest test/
+
 #si fueranmos hacer despliegue aca hiria el resto de los pasos
