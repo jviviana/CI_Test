@@ -10,12 +10,11 @@ def testdb_connection_and_ticked_creation():
     cursor.execute(
         "CREATE TABLE tickets (id INTEGER, ubicacion TEXT, prioridad TEXT)"
     )
-    
     # logica de negocio ypersistencia
     ubicacion = "Laboratorio de redes"
-    prioridad= calcular_prioridad(10)
+    prioridad = calcular_prioridad(10)
     cursor.execute(
-        "INSERT INTO tickets (id, ubicacion, prioridad) VALUES (?, ?, ?)", 
+        "INSERT INTO tickets (id, ubicacion, prioridad) VALUES (?, ?, ?)",
         (1, ubicacion, prioridad)
     )
     conn.commit()
